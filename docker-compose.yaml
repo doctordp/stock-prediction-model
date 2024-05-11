@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  yahoo-finance:
+    image: yfinance
+    volumes:
+      - ./src:/home/user/app
+      - ./data:/home/user/data
