@@ -19,4 +19,4 @@ RUN python -c 'from transformers import pipeline; pipeline("sentiment-analysis",
 
 RUN rm -f requirements.txt
 
-CMD ["uvicorn", "main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "8080", "--reload"]
+CMD ["uvicorn", "main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "8080", "--reload", "--log-level", "trace"]
