@@ -4,12 +4,14 @@ from fastapi import FastAPI
 
 from models.news import SentimentAnalyzer
 from models.trends import TrendsCollector
-from src.models.news import NewsCollector
+from models.news import NewsCollector
 from models.stock import StockCollector
 
-sentiment_analyzer = SentimentAnalyzer()
+from utils.news_to_csv import parse_news_to_csv
+
+#sentiment_analyzer = SentimentAnalyzer()
 trends_collector = TrendsCollector()
-news_collector = NewsCollector(sentiment_analyzer)
+#news_collector = NewsCollector(sentiment_analyzer)
 stock_collector = StockCollector()
 
 logger = logging.getLogger(__name__)
@@ -32,7 +34,8 @@ symbols = [
 
 @app.on_event('startup')
 async def get_data():
-  await get_news(symbols)
+  for symbol in symbols:
+    parse_news_to_csv(symbol)
 
 async def get_trends(symbols: list[str]):
   for symbol in symbols:

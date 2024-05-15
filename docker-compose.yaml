@@ -5,15 +5,3 @@ services:
     volumes:
       - ./src:/home/user/app
       - ./data:/home/user/data
-  portainer:
-    image: registry.tcl.local/utilities/portainer-ce:latest
-    command: -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    ports:
-      - target: 9000
-        published: 9000
-
-volumes:
-  portainer_data:
