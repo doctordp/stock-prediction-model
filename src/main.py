@@ -10,9 +10,9 @@ from models.unify import Unifier
 
 from utils.news_to_csv import parse_news_to_csv
 
-#sentiment_analyzer = SentimentAnalyzer()
+sentiment_analyzer = SentimentAnalyzer()
 trends_collector = TrendsCollector()
-#news_collector = NewsCollector(sentiment_analyzer)
+news_collector = NewsCollector(sentiment_analyzer)
 stock_collector = StockCollector()
 unifier = Unifier()
 
@@ -36,13 +36,12 @@ symbols = [
 
 @app.on_event('startup')
 async def get_data():
-  for symbol in [symbols[0]]:
-    get_news(symbol)
+  print('guay')
 
 async def get_trends(symbols: list[str]):
   for symbol in symbols:
     await trends_collector.get_trends(symbol)
 
 async def get_news(symbols: list[str]):
-  for symbol in symbols:
+  for symbol in [symbols[0]]:
     await news_collector.get_news(symbol)
