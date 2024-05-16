@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class NewsCollector:
   __START_YEAR = 2008
   __END_YEAR = 2024
-  __NEWS_DIRECTORY = '/home/user/data/sentiment'
+  __NEWS_DIRECTORY = '/home/user/data'
 
   def __init__(self, sentiment_analyzer: SentimentAnalyzer) -> None:
     self.__SENTIMENT_ANALYZER = sentiment_analyzer

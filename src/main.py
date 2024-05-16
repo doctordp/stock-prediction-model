@@ -36,8 +36,8 @@ symbols = [
 
 @app.on_event('startup')
 async def get_data():
-  for symbol in symbols:
-    unifier.unify_by_symbol(symbol)
+  for symbol in [symbols[0]]:
+    get_news(symbol)
 
 async def get_trends(symbols: list[str]):
   for symbol in symbols:
