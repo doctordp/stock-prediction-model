@@ -6,6 +6,7 @@ from models.news import SentimentAnalyzer
 from models.trends import TrendsCollector
 from models.news import NewsCollector
 from models.stock import StockCollector
+from models.unify import Unifier
 
 from utils.news_to_csv import parse_news_to_csv
 
@@ -13,6 +14,7 @@ from utils.news_to_csv import parse_news_to_csv
 trends_collector = TrendsCollector()
 #news_collector = NewsCollector(sentiment_analyzer)
 stock_collector = StockCollector()
+unifier = Unifier()
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +37,7 @@ symbols = [
 @app.on_event('startup')
 async def get_data():
   for symbol in symbols:
-    parse_news_to_csv(symbol)
+    unifier.unify_by_symbol(symbol)
 
 async def get_trends(symbols: list[str]):
   for symbol in symbols:
