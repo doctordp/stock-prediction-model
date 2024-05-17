@@ -49,6 +49,7 @@ class Unifier:
     
 
     merged_df['Sentiment'] = merged_df['Sentiment'].fillna(method='ffill').fillna('neutral')
+    merged_df.insert(0, 'Symbol', symbol)
 
     merged_df.to_csv(f'{self.__UNIFIED_DATA_DIRECTORY}/{symbol}.csv', index=False)
 
